@@ -1,0 +1,219 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#"
+     xml:base="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Bathroom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Bathroom">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Bedroom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Bedroom">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Close -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Close">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Door -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Door">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Heating -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Heating">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Kitchen -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Kitchen">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Light -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Light">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Livingroom -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Livingroom">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Open -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Open">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#PowerOff -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#PowerOff">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#PowerOn -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#PowerOn">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Sensor -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Sensor">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Shutter -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Shutter">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#TV -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#TV">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Window -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Window">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Person"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Bathroom"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Bedroom"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Kitchen"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Livingroom"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Close"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Open"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#PowerOff"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#PowerOn"/>
+        </owl:members>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Door"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Light"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Sensor"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Shutter"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#TV"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Window"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi -->
+
