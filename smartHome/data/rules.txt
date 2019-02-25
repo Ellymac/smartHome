@@ -1,4 +1,20 @@
 @prefix ns: <http://www.it-sudparis.eu/family#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 
-[rule1: (?per rdf:type ns:Personne) (?per ns:age ?age) greaterThan(?age, 60)-> (?per rdf:type ns:PersonneAge)]	
+[rule1: (?per rdf:type ns:Personne) (?per ns:age ?age) greaterThan(?age, 60)-> (?per rdf:type ns:PersonneAge)]
+
+[HeatingUpRule:
+	(?userTemp rdf:type ns:TemperatureRequest)
+	(?userTemp ns:intensity ?userTempValue)
+	(?realTemp rdf:type ns:Temperature)
+	(?realTemp ns:intensity ?realTempValue)
+	greaterThan(?userTempValue, ?realTempValue)
+	
+	(?heating rdf:type ns:Heating)
+	(?heating ns:hasAction ?actions)
+	(?actions rdf:type ns:HeatingUp)
+	
+	->
+	
+	(?actions rdf:type ns:RelevantAction)
+]
