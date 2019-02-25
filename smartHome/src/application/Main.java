@@ -17,7 +17,7 @@ import tools.JenaEngine;
 public class Main {
     public static String ns = "";
     public static String inputDataOntology = "data/smartHome.owl";
-    public static String inputRule = "data/rules.txt";
+    public static String inputRule = "data/owlrules.txt";
     public static String inputQuery = "data/query.txt";
 
     /**
@@ -26,15 +26,17 @@ public class Main {
 
     public static void main(String[] args){
         Model model = JenaEngine.readModel(inputDataOntology);
-        Model inferedModel = JenaEngine.readInferencedModelFromRuleFile(model, inputRule);
         
         if (model != null)
 			ns = model.getNsPrefixURI("");
 		
-        (new SmartHomeInstances()).createAll(model,ns);     
+        (new SmartHomeInstances()).createAll(model,ns);
         
+        model = JenaEngine.readInferencedModelFromRuleFile(model, inputRule);
+        model = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+
         //query on the model
-        System.out.println(JenaEngine.executeQueryFile(inferedModel, inputQuery));
+        System.out.println(JenaEngine.executeQueryFile(model, inputQuery));
     }
 
 }

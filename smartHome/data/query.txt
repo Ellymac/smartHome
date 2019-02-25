@@ -1,9 +1,9 @@
-PREFIX ns: <http://www.it-sudparis.eu/family#>
+PREFIX ns: <http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?user ?age
+SELECT ?h ?i
 WHERE {
-	?user rdf:type ns:PersonneAge.
-	?user ns:age ?age.
+	?h rdf:type ns:Heating .
+	?h ns:intensity ?i .
 }

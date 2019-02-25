@@ -1,7 +1,5 @@
-@prefix ns: <http://www.it-sudparis.eu/family#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-
-[rule1: (?per rdf:type ns:Personne) (?per ns:age ?age) greaterThan(?age, 60)-> (?per rdf:type ns:PersonneAge)]
+@prefix ns: <http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#>.
 
 [HeatingUpRule:
 	(?userTemp rdf:type ns:TemperatureRequest)

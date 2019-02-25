@@ -1,12 +1,22 @@
 package ui;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.*;
 
+import com.hp.hpl.jena.rdf.model.Model;
+
+import models.SmartHomeInstances;
+import tools.JenaEngine;
+
 public class Gui extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	private Model model;
+	private String ns;
+	
 	
 	private JPanel pnlInformation;
 	private JLabel lblHour;
@@ -35,6 +45,8 @@ public class Gui extends JFrame {
 		this.getContentPane().add(initInformationPanel(), BorderLayout.WEST);
 
 		initEventListeners();
+		
+		initModel();
 		
 	    this.setVisible(true);
 	}
@@ -89,6 +101,13 @@ public class Gui extends JFrame {
 	
 	private void initEventListeners() {
 		
+	}
+	
+	private void initModel() {
+		model = JenaEngine.readModel("data/smartHome.owl");
+		ns = model.getNsPrefixURI("");
+		model = JenaEngine.readInferencedModelFromRuleFile(model, "data/owlrules.txt");
+		(new SmartHomeInstances()).createAll(model, ns);
 	}
 	
 	public static void main(String args[]){
