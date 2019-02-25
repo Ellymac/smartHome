@@ -13,6 +13,135 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#contains -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#contains">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#isIn"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#hasAction -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#hasAction">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#isIn -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#isIn">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#day -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#day">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#DateTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#hour -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#hour">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#DateTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#intensity -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#intensity">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#minute -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#minute">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#DateTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#month -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#month">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#DateTime"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#name -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#name">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#shutterLevel -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#shutterLevel">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Shutter"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#int"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#state -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#state">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -23,7 +152,9 @@
 
     <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome"/>
+    </owl:Class>
     
 
 
@@ -43,10 +174,34 @@
     
 
 
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Brightness -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Brightness">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Sensor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#BrightnessRequest -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#BrightnessRequest">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#UserRequests"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Close -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Close">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#DateTime -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#DateTime">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome"/>
     </owl:Class>
     
 
@@ -63,6 +218,22 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Heating">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#HeatingDown -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#HeatingDown">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#HeatingUp -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#HeatingUp">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Action"/>
     </owl:Class>
     
 
@@ -93,7 +264,9 @@
 
     <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome"/>
+    </owl:Class>
     
 
 
@@ -107,7 +280,9 @@
 
     <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Person -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Person"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Person">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome"/>
+    </owl:Class>
     
 
 
@@ -127,9 +302,19 @@
     
 
 
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#RelevantAction -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#RelevantAction">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room -->
 
-    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room"/>
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Room">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome"/>
+    </owl:Class>
     
 
 
@@ -157,11 +342,41 @@
     
 
 
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Temperature -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Temperature">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Sensor"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#TemperatureRequest -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#TemperatureRequest">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#UserRequests"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#UserRequests -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#UserRequests">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Window -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Window">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Object"/>
     </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#smartHome"/>
     
 
 
