@@ -14,7 +14,7 @@ import tools.JenaEngine;
  */
 public class Main {
     public static final String ns = "http://www.owl-ontologies.com/Ontology1291196007.owl#";
-    public static String inputDataOntology = "data/family.owl";
+    public static String inputDataOntology = "data/smartHome.owl";
     public static String inputRule = "data/rules.txt";
     public static String inputQuery = "data/query.txt";
 
