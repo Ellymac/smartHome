@@ -25,21 +25,31 @@ public class SmartHomeInstances {
 		
 		// Object creation
 		JenaEngine.createInstanceOfClass(model, ns, "Heating", "BedroomHeating");
-		
-		// UserRequests creation
-		JenaEngine.createInstanceOfClass(model, ns, "TemperatureRequest", "TemperatureRequest");
+        JenaEngine.createInstanceOfClass(model, ns, "Temperature", "BedroomTempSensor");
 
-	}
+        // UserRequests creation
+		JenaEngine.createInstanceOfClass(model, ns, "TemperatureRequest", "BedroomTempRequest");
+
+		// Relevant action
+        JenaEngine.createInstanceOfClass(model, ns, "RelevantAction", "RelevantAction");
+
+
+    }
 	
 	private void addDataTypeProperties(Model model, String ns) {
 		// Update heating properties
 		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomHeating", "name", "BedroomHeating");
-		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomHeating", "intensity", 19);
 		JenaEngine.updateValueOfDataTypeProperty(model, ns, "Bedroom", "contains", "BedroomHeating");
 		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomHeating", "isIn", "Bedroom");
 
-		
-	}
+		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "name", "BedroomTempRequest");
+		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "intensity", 19);
+
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempSensor", "name", "BedroomTempSensor");
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempSensor", "intensity", 17);
+
+
+    }
 	
 	private void addObjectProperties(Model model, String ns) {
 		// 
