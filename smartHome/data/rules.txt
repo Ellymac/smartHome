@@ -16,3 +16,19 @@
 	
 	(?actions rdf:type ns:RelevantAction)
 ]
+
+[HeatingDownRule:
+	(?userTemp rdf:type ns:TemperatureRequest)
+	(?userTemp ns:intensity ?userTempValue)
+	(?realTemp rdf:type ns:Temperature)
+	(?realTemp ns:intensity ?realTempValue)
+	greaterThan(?realTempValue, ?userTempValue)
+
+	(?heating rdf:type ns:Heating)
+	(?heating ns:hasAction ?actions)
+	(?actions rdf:type ns:HeatingDown)
+
+	->
+
+	(?actions rdf:type ns:RelevantAction)
+]
