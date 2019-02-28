@@ -41,25 +41,25 @@ public class SmartHomeInstances {
         JenaEngine.createInstanceOfClass(model, ns, "HeatingUp", "HeatingUp");
         JenaEngine.createInstanceOfClass(model, ns, "HeatingDown", "HeatingDown");
 
-
         // UserRequests creation
 		JenaEngine.createInstanceOfClass(model, ns, "TemperatureRequest", "BedroomTempRequest");
         JenaEngine.createInstanceOfClass(model, ns, "TemperatureRequest", "BathroomTempRequest");
         JenaEngine.createInstanceOfClass(model, ns, "TemperatureRequest", "LivingroomTempRequest");
         JenaEngine.createInstanceOfClass(model, ns, "TemperatureRequest", "KitchenTempRequest");
 
+        // Clocks
+        JenaEngine.createInstanceOfClass(model, ns, "Clock", "WakeupClock");
+        JenaEngine.createInstanceOfClass(model, ns, "Clock", "CurrentClock");
 
-        // Relevant action
-        JenaEngine.createInstanceOfClass(model, ns, "RelevantAction", "RelevantAction");
-        JenaEngine.createInstanceOfClass(model, ns, "Action", "Action");
+        // Shutters
+        JenaEngine.createInstanceOfClass(model, ns, "Shutter", "BedroomShutter");
 
-
+        // Light
+        JenaEngine.createInstanceOfClass(model, ns, "Light", "BedroomLight");
     }
 	
 	private void addDataTypeProperties(Model model, String ns) {
-<<<<<<< Updated upstream
 		// Update heating properties for bedroom
-=======
 		JSONObject currentData = SensorData.getDataFromSensor();
 
 		//temperature
@@ -76,14 +76,12 @@ public class SmartHomeInstances {
 		String formattedDate = simpleDateFormat.format(date);
 
 		// Update heating properties
->>>>>>> Stashed changes
 		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomHeating", "name", "BedroomHeating");
 		JenaEngine.updateValueOfDataTypeProperty(model, ns, "Bedroom", "contains", "BedroomHeating");
 		JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomHeating", "isIn", "Bedroom");
 
 		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "name", "BedroomTempRequest");
-<<<<<<< Updated upstream
-		JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "intensity", temperature);
+		JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "intensity", 19);
         JenaEngine.addValueOfDataTypeProperty(model, ns, "Bedroom", "contains", "BedroomTempRequest");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "isIn", "Bedroom");
 
@@ -98,7 +96,7 @@ public class SmartHomeInstances {
         JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomHeating", "isIn", "Bathroom");
 
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BathroomTempRequest", "name", "BathroomTempRequest");
-        JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomTempRequest", "intensity", temperature);
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomTempRequest", "intensity", 19);
         JenaEngine.addValueOfDataTypeProperty(model, ns, "Bathroom", "contains", "BathroomTempRequest");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomTempRequest", "isIn", "Bathroom");
 
@@ -131,18 +129,20 @@ public class SmartHomeInstances {
         JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomTempRequest", "intensity", temperature);
         JenaEngine.addValueOfDataTypeProperty(model, ns, "Livingroom", "contains", "LivingroomTempRequest");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomTempRequest", "isIn", "Livingroom");
-=======
-		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "intensity", temperature);
-
-        JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempSensor", "name", "BedroomTempSensor");
-        JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempSensor", "intensity", temperature);
->>>>>>> Stashed changes
 
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "LivingroomTempSensor", "name", "LivingroomTempSensor");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomTempSensor", "intensity", temperature);
         JenaEngine.addValueOfDataTypeProperty(model, ns, "Livingroom", "contains", "LivingroomTempSensor");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomTempSensor", "isIn", "Livingroom");
 
+        // Clocks
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "WakeupClock", "name", "WakeupClock");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "WakeupClock", "hour", 7);
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "WakeupClock", "minute", 0);
+
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "CurrentClock", "name", "CurrentClock");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "CurrentClock", "hour", 19);
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "CurrentClock", "minute", 7);
     }
 	
 	private void addObjectProperties(Model model, String ns) {
@@ -156,5 +156,6 @@ public class SmartHomeInstances {
         JenaEngine.updateValueOfObjectProperty(model, ns, "KitchenHeating", "hasAction", "HeatingUp");
         JenaEngine.addValueOfObjectProperty(model, ns, "KitchenHeating", "hasAction", "HeatingDown");
 
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "WakeupClock", "hasAction", "Ring");
 	}
 }

@@ -6,15 +6,18 @@
 	(?userTemp ns:intensity ?userTempValue)
 	(?realTemp rdf:type ns:Temperature)
 	(?realTemp ns:intensity ?realTempValue)
+	(?userTemp ns:isIn ns:Bedroom)
+	(?realTemp ns:isIn ns:Bedroom)
 	greaterThan(?userTempValue, ?realTempValue)
-	
+
 	(?heating rdf:type ns:Heating)
-	(?heating ns:hasAction ?actions)
-	(?actions rdf:type ns:HeatingUp)
+	(?heating ns:isIn ns:Bedroom)
+	(?heating ns:hasAction ?action)
+	(?action rdf:type ns:HeatingUp)
 	
 	->
 	
-	(?actions rdf:type ns:RelevantAction)
+	(?action rdf:type ns:RelevantAction)
 ]
 
 [HeatingDownRule:
@@ -25,10 +28,36 @@
 	greaterThan(?realTempValue, ?userTempValue)
 
 	(?heating rdf:type ns:Heating)
-	(?heating ns:hasAction ?actions)
-	(?actions rdf:type ns:HeatingDown)
+	(?heating ns:hasAction ?action)
+	(?action rdf:type ns:HeatingDown)
 
 	->
 
-	(?actions rdf:type ns:RelevantAction)
+	(?action rdf:type ns:RelevantAction)
+]
+
+[WakeupRule:
+	(?wakeup rdf:type ns:Clock)
+	(?wakeup ns:name "WakeupClock")
+	(?wakeup ns:hour ?hourWu)
+	(?wakeup ns:minute ?minuteWu)
+	(?current rdf:type ns:Clock)
+    (?current ns:name "CurrentClock")
+	(?current ns:hour ?hourCur)
+	(?current ns:minute ?minuteCur)
+	equal(?hourWu, ?hourCur)
+	equal(?minuteWu, ?minuteCur)
+
+	(?shutter rdf:type ns:Shutter)
+	(?shutter ns:hasAction ?action)
+	(?action rdf:type ns:Open)
+
+	(?light rdf:type ns:Light)
+	(?light ns:hasAction ?action2)
+	(?action2 rdf:type ns:Open)
+
+	->
+
+	(?action rdf:type ns:RelevantAction)
+	(?action2 rdf:type ns:RelevantAction)
 ]

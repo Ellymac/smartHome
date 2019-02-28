@@ -72,14 +72,16 @@ public class Gui extends JFrame {
     private Resource desiredTempBathroom;
     private Resource desiredTempLivingroom;
     private Resource desiredTempKitchen;
+    private Resource currentClock;
+    private Resource wakeupClock;
 
     private Resource sensorTemp;
 	private Property propIntensity;
 	private Property propName;
 	private Property propType;
+	private Property propHour;
+	private Property propMinute;
 	private Property propIsIn;
-	private Property propUpdate;
-	
 	
 	public Gui() {
 		super();
@@ -442,12 +444,16 @@ public class Gui extends JFrame {
         propIntensity = model.getProperty(ns + "intensity");
         propType = model.getProperty(rdf+"type");
         propIsIn = model.getProperty(ns+"isIn");
-        propUpdate = model.getProperty(ns+"update");
+        propHour = model.getProperty(ns+"hour");
+        propMinute = model.getProperty(ns+"minute");
 
         desiredTempBedroom = model.getResource(ns + "BedroomTempRequest");
         desiredTempKitchen = model.getResource(ns + "KitchenTempRequest");
         desiredTempBathroom = model.getResource(ns + "BathroomTempRequest");
         desiredTempLivingroom = model.getResource(ns + "LivingroomTempRequest");
+
+        currentClock = model.getResource(ns + "CurrentClock");
+        wakeupClock = model.getResource(ns + "WakeupClock");
 
         System.out.println(desiredTempBedroom + " \"" + desiredTempBedroom.getProperty(propName).getString() + "\"  -  " + desiredTempBedroom.getProperty(propIntensity).getInt());
         sensorTemp = model.getResource(ns + "BedroomTempSensor");
@@ -481,7 +487,25 @@ public class Gui extends JFrame {
         btnTempLivingroom.addActionListener(e -> {
             updateTemperature(cmbDesiredTempLivingroom, desiredTempLivingroom);
         });
-	}
+
+        spinHour.addChangeListener(e -> {
+            checkWakeup(spinHour, currentClock, propHour);
+        });
+
+        spinMinute.addChangeListener(e -> {
+            checkWakeup(spinMinute, currentClock, propMinute);
+        });
+    }
+
+    private void checkWakeup(JSpinner time, Resource clock, Property prop) {
+        clock.removeAll(prop);
+        clock.addLiteral(prop, time.getValue());
+
+        //Calcul
+        clearRelevantActionsPanel();
+        model = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
+        refreshRelevantActionsPanel();
+    }
 
 	private void updateTemperature(JComboBox cmb, Resource desTemp) {
         System.out.println("Temperature désirée : " + cmb.getSelectedItem() +"°C");
