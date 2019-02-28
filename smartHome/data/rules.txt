@@ -66,8 +66,10 @@
 	(?action rdf:type ns:Open)
 
 	(?light rdf:type ns:Light)
+	(?room rdf:type ns:Bedroom)
+	(?room ns:contains ?light)
 	(?light ns:hasAction ?action2)
-	(?action2 rdf:type ns:Open)
+	(?action2 rdf:type ns:PowerOn)
 
 	->
 

@@ -46,10 +46,11 @@ public class Gui extends JFrame {
     private JLabel lblTempBathroom;
     private JLabel lblTempKitchen;
 
-    private JRadioButton rbRadWakeup;
+    private JCheckBox cbWakeup;
     private JSpinner spinHourWakeup;
     private JSpinner spinMinuteWakeup;
     private JButton btnTempBedroom;
+    private JButton btnClockBedroom;
     private JButton btnTempLivingroom;
     private JButton btnTempBathroom;
     private JButton btnTempKitchen;
@@ -110,9 +111,9 @@ public class Gui extends JFrame {
         pnl0.setLayout( gbPanel0 );
 
         lblHour = new JLabel("Heure : ");
-        SpinnerNumberModel spinModelHour = new SpinnerNumberModel(12.0, 1.0, 24.0, 1.0);
+        SpinnerNumberModel spinModelHour = new SpinnerNumberModel(12, 1, 24, 1);
         spinHour = new JSpinner(spinModelHour);
-        SpinnerNumberModel spinModelMinute = new SpinnerNumberModel(0.0, 0.0, 59.0, 1.0);
+        SpinnerNumberModel spinModelMinute = new SpinnerNumberModel(0, 0, 59, 1);
         spinMinute = new JSpinner(spinModelMinute);
         pnl0.add(lblHour);
         pnl0.add(spinHour);
@@ -153,7 +154,7 @@ public class Gui extends JFrame {
         GridBagConstraints gbcTabBedroom = new GridBagConstraints();
         tabBedroom.setLayout( gbTabBedroom );
 
-        rbgPnlBedroom = new ButtonGroup();
+        //rbgPnlBedroom = new ButtonGroup();
         GridBagLayout gbPnlBedroom = new GridBagLayout();
         GridBagConstraints gbcPnlBedroom = new GridBagConstraints();
         tabBedroom.setLayout( gbPnlBedroom );
@@ -188,18 +189,19 @@ public class Gui extends JFrame {
         gbPnlBedroom.setConstraints( lblTempBedroom, gbcPnlBedroom );
         tabBedroom.add( lblTempBedroom );
 
-        rbRadWakeup = new JRadioButton( "Réveil"  );
-        rbRadWakeup.setSelected( true );
-        rbgPnlBedroom.add( rbRadWakeup );
+        cbWakeup = new JCheckBox( "Réveil"  );
+        cbWakeup.setSelected( false );
+        //rbgPnlBedroom.add(cbWakeup);
         gbcPnlBedroom.gridx = 0;
         gbcPnlBedroom.gridy = 1;
         gbcPnlBedroom.weightx = 1;
         gbcPnlBedroom.weighty = 0;
         gbcPnlBedroom.anchor = GridBagConstraints.NORTH;
-        gbPnlBedroom.setConstraints( rbRadWakeup, gbcPnlBedroom );
-        tabBedroom.add( rbRadWakeup );
+        gbPnlBedroom.setConstraints(cbWakeup, gbcPnlBedroom );
+        tabBedroom.add(cbWakeup);
 
         spinHourWakeup = new JSpinner( );
+        spinHourWakeup.setVisible(false);
         gbcPnlBedroom.gridx = 1;
         gbcPnlBedroom.gridy = 1;
         gbcPnlBedroom.weightx = 1;
@@ -209,6 +211,7 @@ public class Gui extends JFrame {
         tabBedroom.add( spinHourWakeup );
 
         lblPoints = new JLabel(":" );
+        lblPoints.setVisible(false);
         gbcPnlBedroom.gridx = 2;
         gbcPnlBedroom.gridy = 1;
         gbcPnlBedroom.weightx = 1;
@@ -218,6 +221,7 @@ public class Gui extends JFrame {
         tabBedroom.add( lblPoints );
 
         spinMinuteWakeup = new JSpinner( );
+        spinMinuteWakeup.setVisible(false);
         gbcPnlBedroom.gridx = 3;
         gbcPnlBedroom.gridy = 1;
         gbcPnlBedroom.weightx = 1;
@@ -225,6 +229,16 @@ public class Gui extends JFrame {
         gbcPnlBedroom.anchor = GridBagConstraints.NORTH;
         gbPnlBedroom.setConstraints( spinMinuteWakeup, gbcPnlBedroom );
         tabBedroom.add( spinMinuteWakeup );
+
+        btnClockBedroom = new JButton( "✓"  );
+        btnClockBedroom.setVisible(false);
+        gbcPnlBedroom.gridx = 4;
+        gbcPnlBedroom.gridy = 1;
+        gbcPnlBedroom.weightx = 1;
+        gbcPnlBedroom.weighty = 0;
+        gbcPnlBedroom.anchor = GridBagConstraints.NORTH;
+        gbPnlBedroom.setConstraints( btnClockBedroom, gbcPnlBedroom );
+        tabBedroom.add( btnClockBedroom );
 
         btnTempBedroom = new JButton( "✓"  );
         gbcPnlBedroom.gridx = 3;
@@ -495,6 +509,26 @@ public class Gui extends JFrame {
         spinMinute.addChangeListener(e -> {
             checkWakeup(spinMinute, currentClock, propMinute);
         });
+
+        cbWakeup.addActionListener(e -> {
+            if(cbWakeup.isSelected()) {
+                lblPoints.setVisible(true);
+                spinHourWakeup.setVisible(true);
+                spinMinuteWakeup.setVisible(true);
+                btnClockBedroom.setVisible(true);
+            }
+            else {
+                lblPoints.setVisible(false);
+                spinHourWakeup.setVisible(false);
+                spinMinuteWakeup.setVisible(false);
+                btnClockBedroom.setVisible(false);
+                removeClock(wakeupClock);
+            }
+        });
+
+        btnClockBedroom.addActionListener(e -> {
+            updateClock(spinHourWakeup, spinMinuteWakeup, wakeupClock);
+        });
     }
 
     private void checkWakeup(JSpinner time, Resource clock, Property prop) {
@@ -502,9 +536,7 @@ public class Gui extends JFrame {
         clock.addLiteral(prop, time.getValue());
 
         //Calcul
-        clearRelevantActionsPanel();
-        model = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
-        refreshRelevantActionsPanel();
+        updateRelevantActionsPanel();
     }
 
 	private void updateTemperature(JComboBox cmb, Resource desTemp) {
@@ -514,11 +546,38 @@ public class Gui extends JFrame {
         desTemp.addLiteral(propIntensity, cmb.getSelectedItem());
 
         //Calcul
+        updateRelevantActionsPanel();
+    }
+
+    private void removeClock(Resource wuClock) {
+        System.out.println("Suppression du réveil.");
+
+        wuClock.removeAll(propHour);
+        wuClock.removeAll(propMinute);
+        wuClock.addLiteral(propHour, 30);
+        wuClock.addLiteral(propMinute, 0);
+
+        //Calcul
+        updateRelevantActionsPanel();
+    }
+
+    private void updateClock(JSpinner h, JSpinner m, Resource wuClock) {
+        System.out.println("Nouveau réveil : " + h.getValue() + ":" + m.getValue());
+
+        wuClock.removeAll(propHour);
+        wuClock.removeAll(propMinute);
+        wuClock.addLiteral(propHour, h.getValue());
+        wuClock.addLiteral(propMinute, m.getValue());
+
+        //Calcul
+        updateRelevantActionsPanel();
+    }
+
+    private void updateRelevantActionsPanel() {
         clearRelevantActionsPanel();
         model = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
         refreshRelevantActionsPanel();
-        //System.out.println(JenaEngine.executeQueryFile(model, "data/query.txt"));
-
+        System.out.println(JenaEngine.executeQueryFile(model, "data/query.txt"));
     }
 
 	private void clearRelevantActionsPanel() {
