@@ -517,6 +517,8 @@ public class Gui extends JFrame {
         clearRelevantActionsPanel();
         model = JenaEngine.readInferencedModelFromRuleFile(model, "data/rules.txt");
         refreshRelevantActionsPanel();
+        //System.out.println(JenaEngine.executeQueryFile(model, "data/query.txt"));
+
     }
 
 	private void clearRelevantActionsPanel() {

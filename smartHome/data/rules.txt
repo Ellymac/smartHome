@@ -2,25 +2,35 @@
 @prefix ns: <http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#>.
 
 [HeatingUpRule:
+    (?room rdf:type ns:Room)
+    (?room ns:contains ?userTemp)
+    (?room ns:contains ?realTemp)
+    (?room ns:contains ?heating)
+
 	(?userTemp rdf:type ns:TemperatureRequest)
 	(?userTemp ns:intensity ?userTempValue)
 	(?realTemp rdf:type ns:Temperature)
 	(?realTemp ns:intensity ?realTempValue)
-	(?userTemp ns:isIn ns:Bedroom)
-	(?realTemp ns:isIn ns:Bedroom)
 	greaterThan(?userTempValue, ?realTempValue)
 
 	(?heating rdf:type ns:Heating)
-	(?heating ns:isIn ns:Bedroom)
 	(?heating ns:hasAction ?action)
 	(?action rdf:type ns:HeatingUp)
+	(?heating ns:hasAction ?down)
+	(?down rdf:type ns:HeatingDown)
 	
 	->
 	
 	(?action rdf:type ns:RelevantAction)
+	(?down rdf:type ns:Action)
 ]
 
 [HeatingDownRule:
+    (?room rdf:type ns:Room)
+    (?room ns:contains ?userTemp)
+    (?room ns:contains ?realTemp)
+    (?room ns:contains ?heating)
+
 	(?userTemp rdf:type ns:TemperatureRequest)
 	(?userTemp ns:intensity ?userTempValue)
 	(?realTemp rdf:type ns:Temperature)
@@ -30,10 +40,13 @@
 	(?heating rdf:type ns:Heating)
 	(?heating ns:hasAction ?action)
 	(?action rdf:type ns:HeatingDown)
+	(?heating ns:hasAction ?up)
+    (?up rdf:type ns:HeatingUp)
 
 	->
 
 	(?action rdf:type ns:RelevantAction)
+    (?up rdf:type ns:Action)
 ]
 
 [WakeupRule:
