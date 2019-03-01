@@ -2,14 +2,12 @@ PREFIX ns: <http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontolo
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT ?hour ?min ?whour ?wmin
+SELECT ?relAct ?obj ?state ?n
 WHERE {
-	?cc rdf:type ns:Clock .
-    ?cc ns:name "CurrentClock" .
-    ?cc ns:hour ?hour .
-    ?cc ns:minute ?min .
-    ?wc rdf:type ns:Clock .
-    ?wc ns:name "WakeupClock" .
-    ?wc ns:hour ?whour .
-    ?wc ns:minute ?wmin .
+	?relAct rdf:type ns:RelevantAction .
+    ?relAct ns:execute true .
+    ?obj ns:hasAction ?relAct .
+    ?relAct rdf:type ns:HeatingUp .
+    ?obj ns:state ?state .
+    ?obj ns:name ?n .
 }

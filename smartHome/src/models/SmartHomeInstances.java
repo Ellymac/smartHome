@@ -111,13 +111,15 @@ public class SmartHomeInstances {
 
 		// Update heating properties for bedroom
 		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomHeating", "name", "BedroomHeating");
-		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "name", "BedroomTempRequest");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomHeating", "state", "off");
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "name", "BedroomTempRequest");
 		JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "intensity", temperature);
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempSensor", "name", "BedroomTempSensor");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomTempSensor", "intensity", temperature);
 
         // Update heating properties for bathroom
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BathroomHeating", "name", "BathroomHeating");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomHeating", "state", "off");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BathroomTempRequest", "name", "BathroomTempRequest");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomTempRequest", "intensity", temperature);
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BathroomTempSensor", "name", "BathroomTempSensor");
@@ -125,6 +127,7 @@ public class SmartHomeInstances {
 
         // Update heating properties for kitchen
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "KitchenHeating", "name", "KitchenHeating");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "KitchenHeating", "state", "off");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "KitchenTempRequest", "name", "KitchenTempRequest");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "KitchenTempRequest", "intensity", temperature);
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "KitchenTempSensor", "name", "KitchenTempSensor");
@@ -132,6 +135,7 @@ public class SmartHomeInstances {
 
         // Update heating properties for livingroom
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "LivingroomHeating", "name", "LivingroomHeating");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomHeating", "state", "off");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "LivingroomTempRequest", "name", "LivingroomTempRequest");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomTempRequest", "intensity", temperature);
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "LivingroomTempSensor", "name", "LivingroomTempSensor");
@@ -139,23 +143,30 @@ public class SmartHomeInstances {
 
         // Clocks
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "WakeupClock", "name", "WakeupClock");
-        JenaEngine.addValueOfDataTypeProperty(model, ns, "WakeupClock", "hour", 7);
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "WakeupClock", "hour", 30);
         JenaEngine.addValueOfDataTypeProperty(model, ns, "WakeupClock", "minute", 0);
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "CurrentClock", "name", "CurrentClock");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "CurrentClock", "hour", 12);
         JenaEngine.addValueOfDataTypeProperty(model, ns, "CurrentClock", "minute", 0);
 
-        // Lights
+        // Shutter
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomShutter", "name", "BedroomShutter");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BathroomShutter", "name", "BathroomShutter");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "LivingroomShutter", "name", "LivingroomShutter");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "KitchenShutter", "name", "KitchenShutter");
-
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomShutter", "state", "closed");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomShutter", "state", "closed");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomShutter", "state", "closed");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "KitchenShutter", "state", "closed");
         // Lights
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomLight", "name", "BedroomLight");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BathroomLight", "name", "BathroomLight");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "LivingroomLight", "name", "LivingroomLight");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "KitchenLight", "name", "KitchenLight");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomLight", "state", "off");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomLight", "state", "off");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomLight", "state", "off");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "KitchenLight", "state", "off");
 
     }
 	

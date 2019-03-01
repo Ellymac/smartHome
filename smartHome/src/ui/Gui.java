@@ -33,12 +33,15 @@ public class Gui extends JFrame {
     private JPanel tabLivingroom;
     private JPanel tabBathroom;
     private JPanel tabKitchen;
+    private JPanel tabCurrentState;
 
 
     private ButtonGroup rbgPnlBedroom;
     private ButtonGroup rbgPnlLivingroom;
     private ButtonGroup rbgPnlBathroom;
     private ButtonGroup rbgPnlKitchen;
+
+    private JTextArea textAreaCurrState;
 
     private JLabel lblTempRequested;
     private JLabel lblTempBedroom;
@@ -54,6 +57,7 @@ public class Gui extends JFrame {
     private JButton btnTempLivingroom;
     private JButton btnTempBathroom;
     private JButton btnTempKitchen;
+    private JButton btnExecute;
 
     private JLabel lblPoints;
 
@@ -82,7 +86,8 @@ public class Gui extends JFrame {
 	private Property propType;
 	private Property propHour;
 	private Property propMinute;
-	private Property propIsIn;
+	private Property propState;
+	private Property propExecute;
 	
 	public Gui() {
 		super();
@@ -100,6 +105,8 @@ public class Gui extends JFrame {
 		initDataModel();
 
 		initModelInView();
+
+		updateCurrentState();
 		
 	    this.setVisible(true);
 	}
@@ -129,10 +136,13 @@ public class Gui extends JFrame {
 
         initTabBathroom();
 
+        initTabCurrentState();
+
         tabpnlRooms.addTab("Chambre",tabBedroom);
         tabpnlRooms.addTab("Salle de bains", tabBathroom);
         tabpnlRooms.addTab("Cuisine", tabKitchen);
         tabpnlRooms.addTab("Salon", tabLivingroom);
+        tabpnlRooms.addTab("État courant", tabCurrentState);
 
         gbcPanel0.gridx = 0;
         gbcPanel0.gridy = 3;
@@ -323,7 +333,6 @@ public class Gui extends JFrame {
         GridBagConstraints gbcTabKitchen = new GridBagConstraints();
         tabKitchen.setLayout( gbTabKitchen );
 
-        rbgPnlKitchen = new ButtonGroup();
         GridBagLayout gbPnlKitchen = new GridBagLayout();
         GridBagConstraints gbcPnlKitchen = new GridBagConstraints();
         tabKitchen.setLayout( gbPnlKitchen );
@@ -435,6 +444,39 @@ public class Gui extends JFrame {
         gbTabBathroom.setConstraints( tabBathroom, gbcTabBathroom );
     }
 
+    private void initTabCurrentState() {
+        tabCurrentState = new JPanel();
+        GridBagLayout gbTabCurrentState = new GridBagLayout();
+        GridBagConstraints gbcTabCurrentState = new GridBagConstraints();
+        tabCurrentState.setLayout( gbTabCurrentState );
+
+        GridBagLayout gbPnlCurrentState = new GridBagLayout();
+        GridBagConstraints gbcPnlCurrentState = new GridBagConstraints();
+        tabCurrentState.setLayout( gbPnlCurrentState );
+
+        JPanel p = new JPanel();
+        textAreaCurrState = new JTextArea();
+        textAreaCurrState.setEditable(false);
+        textAreaCurrState.setRows(10);
+        p.add(new JScrollPane(textAreaCurrState));
+        gbcPnlCurrentState.gridx = 0;
+        gbcPnlCurrentState.gridy = 0;
+        gbcPnlCurrentState.weightx = 1;
+        gbcPnlCurrentState.weighty = 1;
+        gbcPnlCurrentState.fill = GridBagConstraints.BOTH;
+        gbcPnlCurrentState.anchor = GridBagConstraints.NORTH;
+        gbPnlCurrentState.setConstraints( p, gbcPnlCurrentState );
+        tabCurrentState.add( p );
+
+        gbcTabCurrentState.gridx = 0;
+        gbcTabCurrentState.gridy = 0;
+        gbcTabCurrentState.fill = GridBagConstraints.BOTH;
+        gbcTabCurrentState.weightx = 1;
+        gbcTabCurrentState.weighty = 0;
+        gbcTabCurrentState.anchor = GridBagConstraints.NORTH;
+        gbTabCurrentState.setConstraints( tabCurrentState, gbcTabCurrentState );
+    }
+
 	private JPanel initRelevantActionsPanel() {
 		pnlRelActions = new JPanel(new BorderLayout());
 
@@ -443,6 +485,9 @@ public class Gui extends JFrame {
         txtareaRelevantAct.setRows(10);
 
 		pnlRelActions.add(txtareaRelevantAct, BorderLayout.CENTER);
+
+		btnExecute = new JButton("Tout exécuter");
+		pnlRelActions.add(btnExecute, BorderLayout.EAST);
 
 		return pnlRelActions;
 	}
@@ -457,9 +502,10 @@ public class Gui extends JFrame {
         propName = model.getProperty(ns + "name");
         propIntensity = model.getProperty(ns + "intensity");
         propType = model.getProperty(rdf+"type");
-        propIsIn = model.getProperty(ns+"isIn");
         propHour = model.getProperty(ns+"hour");
         propMinute = model.getProperty(ns+"minute");
+        propState = model.getProperty(ns+"state");
+        propExecute = model.getProperty(ns+"execute");
 
         desiredTempBedroom = model.getResource(ns + "BedroomTempRequest");
         desiredTempKitchen = model.getResource(ns + "KitchenTempRequest");
@@ -529,6 +575,29 @@ public class Gui extends JFrame {
         btnClockBedroom.addActionListener(e -> {
             updateClock(spinHourWakeup, spinMinuteWakeup, wakeupClock);
         });
+
+        btnExecute.addActionListener(e -> {
+            List<QuerySolution> results = new ArrayList<QuerySolution>();
+            getRelevantActions().forEachRemaining(results::add);
+            Resource resource;
+            for(QuerySolution qs : results) {
+                resource = qs.getResource("act");
+                if(resource != null) {
+                    if (resource.getProperty(propType).asTriple().getObject().getLocalName().equals("RelevantAction")) {
+                        System.out.println("exec : " + resource.getProperty(propType).asTriple().getObject().getLocalName()+"\n");
+                        resource.removeAll(propExecute);
+                        resource.addLiteral(propExecute, true);
+                    }
+                }
+            }
+            clearRelevantActionsPanel();
+            updateRelevantActionsPanel();
+        });
+
+        tabpnlRooms.addChangeListener(e -> {
+            if(tabpnlRooms.getSelectedIndex() == 4)
+                updateCurrentState();
+        });
     }
 
     private void checkWakeup(JSpinner time, Resource clock, Property prop) {
@@ -587,7 +656,7 @@ public class Gui extends JFrame {
         for(QuerySolution qs : results) {
             resource = qs.getResource("act");
             if(resource != null) {
-                System.out.println(resource.getProperty(propType).asTriple().getObject().getLocalName());
+                //System.out.println(resource.getProperty(propType).asTriple().getObject().getLocalName());
                 if (resource.getProperty(propType).asTriple().getObject().getLocalName().equals("RelevantAction"))
                     model.remove(resource.getProperty(propType));
             }
@@ -623,6 +692,48 @@ public class Gui extends JFrame {
 		QueryExecution qe = QueryExecutionFactory.create(query,model);
 		return qe.execSelect();
 	}
+
+	private void updateCurrentState() {
+	    StringBuffer states = new StringBuffer();
+	    String minWakeup = model.getResource(ns+"WakeupClock").getProperty(propMinute).getString();
+	    String hourWakeup = model.getResource(ns+"WakeupClock").getProperty(propHour).getString();
+        String wakeup;
+	    if(hourWakeup.equals("30"))
+	        wakeup = "Aucun réveil";
+	    else
+	        wakeup = hourWakeup + ":" + minWakeup;
+	    states.append("Horloges :\n");
+	    states.append("CurrentClock -> " + model.getResource(ns+"CurrentClock").getProperty(propHour).getString() + ":" + model.getResource(ns+"CurrentClock").getProperty(propMinute).getString() +"\n");
+        states.append("WakeupClock -> " + wakeup +"\n");
+        states.append("\nTempératures :\n");
+        states.append("Chambre -> courante : " + model.getResource(ns+"BedroomTempSensor").getProperty(propIntensity).getString()+ "°C.  désirée : "+
+                        model.getResource(ns+"BedroomTempRequest").getProperty(propIntensity).getString()+ "°C.\n");
+        states.append("Salle de bains -> courante : " + model.getResource(ns+"BathroomTempSensor").getProperty(propIntensity).getString()+ "°C.  désirée : "+
+                model.getResource(ns+"BathroomTempRequest").getProperty(propIntensity).getString()+ "°C.\n");
+        states.append("Salon -> courante : " + model.getResource(ns+"LivingroomTempSensor").getProperty(propIntensity).getString()+ "°C.  désirée : "+
+                model.getResource(ns+"LivingroomTempRequest").getProperty(propIntensity).getString()+ "°C.\n");
+        states.append("Cuisine -> courante : " + model.getResource(ns+"KitchenTempSensor").getProperty(propIntensity).getString()+ "°C.  désirée : "+
+                model.getResource(ns+"KitchenTempRequest").getProperty(propIntensity).getString()+ "°C.\n");
+        states.append("\nChauffages :\n");
+        states.append(model.getResource(ns+"BedroomHeating").getProperty(propName).getString() + " -> " + model.getResource(ns+"BedroomHeating").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"BathroomHeating").getProperty(propName).getString() + " -> " + model.getResource(ns+"BathroomHeating").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"LivingroomHeating").getProperty(propName).getString() + " -> " + model.getResource(ns+"LivingroomHeating").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"KitchenHeating").getProperty(propName).getString() + " -> " + model.getResource(ns+"KitchenHeating").getProperty(propState).getString()+"\n");
+        states.append("\nLumières :\n");
+        states.append(model.getResource(ns+"BedroomLight").getProperty(propName).getString() + " -> " + model.getProperty(ns+"BedroomLight").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"BathroomLight").getProperty(propName).getString() + " -> " + model.getProperty(ns+"BathroomLight").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"LivingroomLight").getProperty(propName).getString() + " -> " + model.getProperty(ns+"LivingroomLight").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"KitchenLight").getProperty(propName).getString() + " -> " + model.getProperty(ns+"KitchenLight").getProperty(propState).getString()+"\n");
+        states.append("\nVolets :\n");
+        states.append(model.getResource(ns+"BedroomShutter").getProperty(propName).getString() + " -> " + model.getProperty(ns+"BedroomShutter").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"BathroomShutter").getProperty(propName).getString() + " -> " + model.getProperty(ns+"BathroomShutter").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"LivingroomShutter").getProperty(propName).getString() + " -> " + model.getProperty(ns+"LivingroomShutter").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"KitchenShutter").getProperty(propName).getString() + " -> " + model.getProperty(ns+"KitchenShutter").getProperty(propState).getString()+"\n");
+
+
+        textAreaCurrState.setText(states.toString());
+        textAreaCurrState.update(textAreaCurrState.getGraphics());
+    }
 	
 	public static void main(String args[]){
        new Gui();

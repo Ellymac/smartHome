@@ -1,5 +1,62 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix ns: <http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+
+[ExecuteShutterOpenRule:
+    (?relAct rdf:type ns:RelevantAction)
+    (?obj ns:hasAction ?relAct)
+    (?relAct ns:execute "true"^^xsd:boolean)
+    (?relAct rdf:type ns:Open)
+
+    ->
+
+    (?obj ns:state "open")
+]
+
+[ExecuteLightOnRule:
+    (?relAct rdf:type ns:RelevantAction)
+    (?obj ns:hasAction ?relAct)
+    (?relAct ns:execute "true"^^xsd:boolean)
+    (?relAct rdf:type ns:PowerOn)
+
+    ->
+
+    (?obj ns:state "on")
+]
+
+[ExecuteShutterCloseRule:
+    (?relAct rdf:type ns:RelevantAction)
+    (?obj ns:hasAction ?relAct)
+    (?relAct ns:execute "true"^^xsd:boolean)
+    (?relAct rdf:type ns:Open)
+
+    ->
+
+    (?obj ns:state "closed")
+]
+
+[ExecuteLightOffRule:
+    (?relAct rdf:type ns:RelevantAction)
+    (?obj ns:hasAction ?relAct)
+    (?relAct ns:execute "true"^^xsd:boolean)
+    (?relAct rdf:type ns:PowerOn)
+
+    ->
+
+    (?obj ns:state "off")
+]
+
+
+[ExecuteHeatingUpRule:
+    (?relAct rdf:type ns:RelevantAction)
+    (?obj ns:hasAction ?relAct)
+    (?relAct ns:execute "true"^^xsd:boolean)
+    (?relAct rdf:type ns:HeatingUp)
+
+    ->
+
+    (?obj ns:state "on")
+]
 
 [HeatingUpRule:
     (?room rdf:type ns:Room)
@@ -23,6 +80,17 @@
 	
 	(?action rdf:type ns:RelevantAction)
 	(?down rdf:type ns:Action)
+]
+
+[ExecuteHeatingDownRule:
+    (?relAct rdf:type ns:RelevantAction)
+    (?obj ns:hasAction ?relAct)
+    (?relAct ns:execute "true"^^xsd:boolean)
+    (?relAct rdf:type ns:HeatingDown)
+
+    ->
+
+    (?obj ns:state "off")
 ]
 
 [HeatingDownRule:
