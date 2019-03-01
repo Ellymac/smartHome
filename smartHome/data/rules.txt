@@ -2,6 +2,18 @@
 @prefix ns: <http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 
+[CloseWindowsRainRule:
+    (?rain rdf:type ns:RainProbability)
+    (?rain ns:intensity ?proba)
+    greaterThan(?proba 60)
+    (?win rdf:type ns:Window)
+    (?win ns:state "open")
+
+    ->
+
+    (?win ns:state "closed")
+]
+
 [ExecuteShutterOpenRule:
     (?relAct rdf:type ns:RelevantAction)
     (?obj ns:hasAction ?relAct)

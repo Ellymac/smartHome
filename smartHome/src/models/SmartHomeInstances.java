@@ -57,6 +57,16 @@ public class SmartHomeInstances {
         JenaEngine.createInstanceOfClass(model, ns, "Open", "OpenBathroom");
         JenaEngine.createInstanceOfClass(model, ns, "Close", "CloseBathroom");
 
+        // Windows actions
+        JenaEngine.createInstanceOfClass(model, ns, "Open", "OpenWinBedroom");
+        JenaEngine.createInstanceOfClass(model, ns, "Close", "CloseWinBedroom");
+        JenaEngine.createInstanceOfClass(model, ns, "Open", "OpenWinLivingroom");
+        JenaEngine.createInstanceOfClass(model, ns, "Close", "CloseWinLivingroom");
+        JenaEngine.createInstanceOfClass(model, ns, "Open", "OpenWinKitchen");
+        JenaEngine.createInstanceOfClass(model, ns, "Close", "CloseWinKitchen");
+        JenaEngine.createInstanceOfClass(model, ns, "Open", "OpenWinBathroom");
+        JenaEngine.createInstanceOfClass(model, ns, "Close", "CloseWinBathroom");
+
         // Light actions
         JenaEngine.createInstanceOfClass(model, ns, "PowerOn", "PowerOnBedroom");
         JenaEngine.createInstanceOfClass(model, ns, "PowerOff", "PowerOffBedroom");
@@ -83,13 +93,20 @@ public class SmartHomeInstances {
         JenaEngine.createInstanceOfClass(model, ns, "Shutter", "LivingroomShutter");
         JenaEngine.createInstanceOfClass(model, ns, "Shutter", "KitchenShutter");
 
-
         // Light
         JenaEngine.createInstanceOfClass(model, ns, "Light", "BedroomLight");
         JenaEngine.createInstanceOfClass(model, ns, "Light", "BathroomLight");
         JenaEngine.createInstanceOfClass(model, ns, "Light", "LivingroomLight");
         JenaEngine.createInstanceOfClass(model, ns, "Light", "KitchenLight");
 
+        // Windows
+        JenaEngine.createInstanceOfClass(model, ns, "Window", "BedroomWindow");
+        JenaEngine.createInstanceOfClass(model, ns, "Window", "BathroomWindow");
+        JenaEngine.createInstanceOfClass(model, ns, "Window", "LivingroomWindow");
+        JenaEngine.createInstanceOfClass(model, ns, "Window", "KitchenWindow");
+
+        // Weather
+        JenaEngine.createInstanceOfClass(model, ns, "RainProbability", "RainProbability");
     }
 	
 	private void addDataTypeProperties(Model model, String ns) {
@@ -109,7 +126,10 @@ public class SmartHomeInstances {
 		simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+1"));
 		String formattedDate = simpleDateFormat.format(date);
 
-		// Update heating properties for bedroom
+		// Raining probability
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "RainProbability", "intensity", 80); //precipProbability
+
+        // Update heating properties for bedroom
 		JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomHeating", "name", "BedroomHeating");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomHeating", "state", "off");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomTempRequest", "name", "BedroomTempRequest");
@@ -158,6 +178,7 @@ public class SmartHomeInstances {
         JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomShutter", "state", "closed");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomShutter", "state", "closed");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "KitchenShutter", "state", "closed");
+
         // Lights
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomLight", "name", "BedroomLight");
         JenaEngine.updateValueOfDataTypeProperty(model, ns, "BathroomLight", "name", "BathroomLight");
@@ -168,10 +189,21 @@ public class SmartHomeInstances {
         JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomLight", "state", "off");
         JenaEngine.addValueOfDataTypeProperty(model, ns, "KitchenLight", "state", "off");
 
+        // Windows
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "BedroomWindow", "name", "BedroomWindow");
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "BathroomWindow", "name", "BathroomWindow");
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "LivingroomWindow", "name", "LivingroomWindow");
+        JenaEngine.updateValueOfDataTypeProperty(model, ns, "KitchenWindow", "name", "KitchenWindow");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BedroomWindow", "state", "closed");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "BathroomWindow", "state", "closed");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "LivingroomWindow", "state", "closed");
+        JenaEngine.addValueOfDataTypeProperty(model, ns, "KitchenWindow", "state", "closed");
+
+
     }
 	
 	private void addObjectProperties(Model model, String ns) {
-		// 
+		// Heating
 		JenaEngine.updateValueOfObjectProperty(model, ns, "BedroomHeating", "hasAction", "HeatingUpBedroom");
 		JenaEngine.addValueOfObjectProperty(model, ns, "BedroomHeating", "hasAction", "HeatingDownBedroom");
         JenaEngine.updateValueOfObjectProperty(model, ns, "BathroomHeating", "hasAction", "HeatingUpBathroom");
@@ -242,6 +274,21 @@ public class SmartHomeInstances {
         JenaEngine.addValueOfObjectProperty(model, ns, "Kitchen", "contains", "KitchenLight");
         JenaEngine.addValueOfObjectProperty(model, ns, "Bathroom", "contains", "BathroomLight");
         JenaEngine.addValueOfObjectProperty(model, ns, "Livingroom", "contains", "LivingroomLight");
+
+        // Window
+        JenaEngine.updateValueOfObjectProperty(model, ns, "BedroomWindow", "hasAction", "OpenWinBedroom");
+        JenaEngine.updateValueOfObjectProperty(model, ns, "KitchenWindow", "hasAction", "OpenWinKitchen");
+        JenaEngine.updateValueOfObjectProperty(model, ns, "BathroomWindow", "hasAction", "OpenWinBathroom");
+        JenaEngine.updateValueOfObjectProperty(model, ns, "LivingroomWindow", "hasAction", "OpenWinLivingroom");
+        JenaEngine.addValueOfObjectProperty(model, ns, "BedroomWindow", "hasAction", "CloseWinBedroom");
+        JenaEngine.addValueOfObjectProperty(model, ns, "KitchenWindow", "hasAction", "CloseWinKitchen");
+        JenaEngine.addValueOfObjectProperty(model, ns, "BathroomWindow", "hasAction", "CloseWinBathroom");
+        JenaEngine.addValueOfObjectProperty(model, ns, "LivingroomWindow", "hasAction", "CloseWinLivingroom");
+
+        JenaEngine.addValueOfObjectProperty(model, ns, "Bedroom", "contains", "BedroomWindow");
+        JenaEngine.addValueOfObjectProperty(model, ns, "Kitchen", "contains", "KitchenWindow");
+        JenaEngine.addValueOfObjectProperty(model, ns, "Bathroom", "contains", "BathroomWindow");
+        JenaEngine.addValueOfObjectProperty(model, ns, "Livingroom", "contains", "LivingroomWindow");
 
     }
 }

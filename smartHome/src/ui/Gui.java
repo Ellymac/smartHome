@@ -35,6 +35,7 @@ public class Gui extends JFrame {
     private JPanel tabKitchen;
     private JPanel tabCurrentState;
 
+    private JPanel pnlLightShutter;
 
     private ButtonGroup rbgPnlBedroom;
     private ButtonGroup rbgPnlLivingroom;
@@ -199,9 +200,41 @@ public class Gui extends JFrame {
         gbPnlBedroom.setConstraints( lblTempBedroom, gbcPnlBedroom );
         tabBedroom.add( lblTempBedroom );
 
+        pnlLightShutter = new JPanel();
+        JCheckBox cbLightsBedroom = new JCheckBox("Lumière");
+        cbLightsBedroom.addActionListener(e -> {
+            if(cbLightsBedroom.isSelected()) {
+                model.getResource(ns+"BedroomLight").removeAll(propState);
+                model.getResource(ns+"BedroomLight").addLiteral(propState, "on");
+            }
+            else {
+                model.getResource(ns+"BedroomLight").removeAll(propState);
+                model.getResource(ns+"BedroomLight").addLiteral(propState, "off");
+            }
+        });
+        JCheckBox cbShuttersBedroom = new JCheckBox("Volets");
+        cbShuttersBedroom.addActionListener(e -> {
+            if(cbShuttersBedroom.isSelected()) {
+                model.getResource(ns+"BedroomShutter").removeAll(propState);
+                model.getResource(ns+"BedroomShutter").addLiteral(propState, "open");
+            }
+            else {
+                model.getResource(ns+"BedroomShutter").removeAll(propState);
+                model.getResource(ns+"BedroomShutter").addLiteral(propState, "closed");
+            }
+        });
+        pnlLightShutter.add(cbShuttersBedroom);
+        pnlLightShutter.add(cbLightsBedroom);
+        gbcPnlBedroom.gridx = 0;
+        gbcPnlBedroom.gridy = 2;
+        gbcPnlBedroom.weightx = 1;
+        gbcPnlBedroom.weighty = 0;
+        gbcPnlBedroom.anchor = GridBagConstraints.NORTH;
+        gbPnlBedroom.setConstraints(pnlLightShutter, gbcPnlBedroom );
+        tabBedroom.add(pnlLightShutter);
+
         cbWakeup = new JCheckBox( "Réveil"  );
         cbWakeup.setSelected( false );
-        //rbgPnlBedroom.add(cbWakeup);
         gbcPnlBedroom.gridx = 0;
         gbcPnlBedroom.gridy = 1;
         gbcPnlBedroom.weightx = 1;
@@ -318,6 +351,39 @@ public class Gui extends JFrame {
         gbPnlLivingroom.setConstraints( btnTempLivingroom, gbcPnlLivingroom );
         tabLivingroom.add( btnTempLivingroom );
 
+        pnlLightShutter = new JPanel();
+        JCheckBox cbLightsBedroom = new JCheckBox("Lumière");
+        cbLightsBedroom.addActionListener(e -> {
+            if(cbLightsBedroom.isSelected()) {
+                model.getResource(ns+"LivingroomLight").removeAll(propState);
+                model.getResource(ns+"LivingroomLight").addLiteral(propState, "on");
+            }
+            else {
+                model.getResource(ns+"LivingroomLight").removeAll(propState);
+                model.getResource(ns+"LivingroomLight").addLiteral(propState, "off");
+            }
+        });
+        JCheckBox cbShuttersBedroom = new JCheckBox("Volets");
+        cbShuttersBedroom.addActionListener(e -> {
+            if(cbShuttersBedroom.isSelected()) {
+                model.getResource(ns+"LivingroomShutter").removeAll(propState);
+                model.getResource(ns+"LivingroomShutter").addLiteral(propState, "open");
+            }
+            else {
+                model.getResource(ns+"LivingroomShutter").removeAll(propState);
+                model.getResource(ns+"LivingroomShutter").addLiteral(propState, "closed");
+            }
+        });
+        pnlLightShutter.add(cbShuttersBedroom);
+        pnlLightShutter.add(cbLightsBedroom);
+        gbcPnlLivingroom.gridx = 0;
+        gbcPnlLivingroom.gridy = 2;
+        gbcPnlLivingroom.weightx = 1;
+        gbcPnlLivingroom.weighty = 0;
+        gbcPnlLivingroom.anchor = GridBagConstraints.NORTH;
+        gbPnlLivingroom.setConstraints(pnlLightShutter, gbcPnlLivingroom );
+        tabLivingroom.add(pnlLightShutter);
+
         gbcTabLivingroom.gridx = 0;
         gbcTabLivingroom.gridy = 0;
         gbcTabLivingroom.fill = GridBagConstraints.HORIZONTAL;
@@ -375,6 +441,39 @@ public class Gui extends JFrame {
         gbcPnlKitchen.anchor = GridBagConstraints.NORTH;
         gbPnlKitchen.setConstraints( btnTempKitchen, gbcPnlKitchen );
         tabKitchen.add( btnTempKitchen );
+
+        pnlLightShutter = new JPanel();
+        JCheckBox cbLightsBedroom = new JCheckBox("Lumière");
+        cbLightsBedroom.addActionListener(e -> {
+            if(cbLightsBedroom.isSelected()) {
+                model.getResource(ns+"KitchenLight").removeAll(propState);
+                model.getResource(ns+"KitchenLight").addLiteral(propState, "on");
+            }
+            else {
+                model.getResource(ns+"KitchenLight").removeAll(propState);
+                model.getResource(ns+"KitchenLight").addLiteral(propState, "off");
+            }
+        });
+        JCheckBox cbShuttersBedroom = new JCheckBox("Volets");
+        cbShuttersBedroom.addActionListener(e -> {
+            if(cbShuttersBedroom.isSelected()) {
+                model.getResource(ns+"KitchenShutter").removeAll(propState);
+                model.getResource(ns+"KitchenShutter").addLiteral(propState, "open");
+            }
+            else {
+                model.getResource(ns+"KitchenShutter").removeAll(propState);
+                model.getResource(ns+"KitchenShutter").addLiteral(propState, "closed");
+            }
+        });
+        pnlLightShutter.add(cbShuttersBedroom);
+        pnlLightShutter.add(cbLightsBedroom);
+        gbcPnlKitchen.gridx = 0;
+        gbcPnlKitchen.gridy = 2;
+        gbcPnlKitchen.weightx = 1;
+        gbcPnlKitchen.weighty = 0;
+        gbcPnlKitchen.anchor = GridBagConstraints.NORTH;
+        gbPnlKitchen.setConstraints(pnlLightShutter, gbcPnlKitchen );
+        tabKitchen.add(pnlLightShutter);
 
         gbcTabKitchen.gridx = 0;
         gbcTabKitchen.gridy = 0;
@@ -434,6 +533,39 @@ public class Gui extends JFrame {
         gbcPnlBathroom.anchor = GridBagConstraints.NORTH;
         gbPnlBathroom.setConstraints( btnTempBathroom, gbcPnlBathroom );
         tabBathroom.add( btnTempBathroom );
+
+        pnlLightShutter = new JPanel();
+        JCheckBox cbLightsBedroom = new JCheckBox("Lumière");
+        cbLightsBedroom.addActionListener(e -> {
+            if(cbLightsBedroom.isSelected()) {
+                model.getResource(ns+"BathroomLight").removeAll(propState);
+                model.getResource(ns+"BathroomLight").addLiteral(propState, "on");
+            }
+            else {
+                model.getResource(ns+"BathroomLight").removeAll(propState);
+                model.getResource(ns+"BathroomLight").addLiteral(propState, "off");
+            }
+        });
+        JCheckBox cbShuttersBedroom = new JCheckBox("Volets");
+        cbShuttersBedroom.addActionListener(e -> {
+            if(cbShuttersBedroom.isSelected()) {
+                model.getResource(ns+"BathroomShutter").removeAll(propState);
+                model.getResource(ns+"BathroomShutter").addLiteral(propState, "open");
+            }
+            else {
+                model.getResource(ns+"BathroomShutter").removeAll(propState);
+                model.getResource(ns+"BathroomShutter").addLiteral(propState, "closed");
+            }
+        });
+        pnlLightShutter.add(cbShuttersBedroom);
+        pnlLightShutter.add(cbLightsBedroom);
+        gbcPnlBathroom.gridx = 0;
+        gbcPnlBathroom.gridy = 2;
+        gbcPnlBathroom.weightx = 1;
+        gbcPnlBathroom.weighty = 0;
+        gbcPnlBathroom.anchor = GridBagConstraints.NORTH;
+        gbPnlBathroom.setConstraints(pnlLightShutter, gbcPnlBathroom );
+        tabBathroom.add(pnlLightShutter);
 
         gbcTabBathroom.gridx = 0;
         gbcTabBathroom.gridy = 0;
@@ -729,7 +861,11 @@ public class Gui extends JFrame {
         states.append(model.getResource(ns+"BathroomShutter").getProperty(propName).getString() + " -> " + model.getProperty(ns+"BathroomShutter").getProperty(propState).getString()+"\n");
         states.append(model.getResource(ns+"LivingroomShutter").getProperty(propName).getString() + " -> " + model.getProperty(ns+"LivingroomShutter").getProperty(propState).getString()+"\n");
         states.append(model.getResource(ns+"KitchenShutter").getProperty(propName).getString() + " -> " + model.getProperty(ns+"KitchenShutter").getProperty(propState).getString()+"\n");
-
+        states.append("\nFenêtres :\n");
+        states.append(model.getResource(ns+"BedroomWindow").getProperty(propName).getString() + " -> " + model.getProperty(ns+"BedroomWindow").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"BathroomWindow").getProperty(propName).getString() + " -> " + model.getProperty(ns+"BathroomWindow").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"LivingroomWindow").getProperty(propName).getString() + " -> " + model.getProperty(ns+"LivingroomWindow").getProperty(propState).getString()+"\n");
+        states.append(model.getResource(ns+"KitchenWindow").getProperty(propName).getString() + " -> " + model.getProperty(ns+"KitchenWindow").getProperty(propState).getString()+"\n");
 
         textAreaCurrState.setText(states.toString());
         textAreaCurrState.update(textAreaCurrState.getGraphics());

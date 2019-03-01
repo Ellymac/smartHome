@@ -315,6 +315,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#RainProbability -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#RainProbability">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#Sensor"/>
+    </owl:Class>
+    
+
+
     <!-- http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#RelevantAction -->
 
     <owl:Class rdf:about="http://www.semanticweb.org/camille/ontologies/2019/1/untitled-ontology-6#RelevantAction">
